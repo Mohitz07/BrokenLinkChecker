@@ -85,6 +85,11 @@
                     <includes>
                         <include>**/*TestRunner.java</include>
                     </includes>
+
+                    <!-- ✅ THIS IS THE FIX -->
+                    <systemPropertyVariables>
+                        <allure.results.directory>allure-results</allure.results.directory>
+                    </systemPropertyVariables>
                 </configuration>
             </plugin>
 
