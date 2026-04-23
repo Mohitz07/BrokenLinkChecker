@@ -1,11 +1,6 @@
  pipeline {
      agent any
 
-     tools {
-         maven 'Maven'
-         jdk 'JDK'
-     }
-
      environment {
          JMETER_HOME = "C:\\JMeter\\apache-jmeter-5.6.3"
      }
