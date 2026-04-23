@@ -33,6 +33,8 @@
                      -l target\\results-${timestamp}.jtl ^
                      -e -o target\\jmeter-report-${timestamp} ^
                      -Jjmeter.save.saveservice.output_format=csv ^
+                     -Jjmeter.save.saveservice.time=true ^
+                     -Jjmeter.save.saveservice.elapsed=true ^
                      -Jjmeter.save.saveservice.label=true ^
                      -Jjmeter.save.saveservice.response_code=true ^
                      -Jjmeter.save.saveservice.response_message=true ^
@@ -41,8 +43,7 @@
                      -Jjmeter.save.saveservice.latency=true ^
                      -Jjmeter.save.saveservice.connect_time=true ^
                      -Jjmeter.save.saveservice.thread_counts=true ^
-                     -Jjmeter.save.saveservice.sample_count=true ^
-                     -Jjmeter.save.saveservice.time=true
+                     -Jjmeter.save.saveservice.sample_count=true
                      """
                  }
              }
