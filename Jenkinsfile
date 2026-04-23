@@ -32,9 +32,17 @@ pipeline {
                     -t src\\test\\resources\\jmeter\\LoadTest.jmx ^
                     -l target\\results-${timestamp}.jtl ^
                     -e -o target\\jmeter-report-${timestamp} ^
-                    -q %JMETER_HOME%\\bin\\jmeter.properties ^
+                    -Jjmeter.save.saveservice.output_format=csv ^
+                    -Jjmeter.save.saveservice.timestamp_format=ms ^
                     -Jjmeter.save.saveservice.print_field_names=true ^
-                    -Jjmeter.save.saveservice.timestamp_format=ms
+                    -Jjmeter.save.saveservice.thread_name=true ^
+                    -Jjmeter.save.saveservice.data_type=true ^
+                    -Jjmeter.save.saveservice.latency=true ^
+                    -Jjmeter.save.saveservice.connect_time=true ^
+                    -Jjmeter.save.saveservice.bytes=true ^
+                    -Jjmeter.save.saveservice.success=true ^
+                    -Jjmeter.save.saveservice.grpThreads=true ^
+                    -Jjmeter.save.saveservice.allThreads=true
                     """
 
                     // 🔍 Debug: Check files
