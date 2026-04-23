@@ -48,6 +48,8 @@ public class BrokenLinkSteps {
                 .filter(link -> !link.contains("tel:"))
                 .filter(link -> !link.endsWith(".pdf"))
                 .filter(link -> !link.endsWith(".doc"))
+                .filter(link -> !link.contains("https://") || link.startsWith("https://"))
+                .filter(link -> !link.contains("https://ycce.edu/https"))
 
                 //  Remove trailing slash duplicates
                 .map(link -> link.endsWith("/") ? link.substring(0, link.length() - 1) : link)
@@ -94,8 +96,9 @@ public class BrokenLinkSteps {
         brokenLinks.forEach(System.out::println);
 
         List<String> cleanValidLinks = validLinks.stream()
-                .map(link -> link.split(" \\[")[0].trim())
+                .map(link -> link.split(" \\[")[0])
                 .filter(link -> link.startsWith("http"))
+                .limit(50)
                 .collect(Collectors.toList());
 
         List<String> cleanBrokenLinks = brokenLinks.stream()

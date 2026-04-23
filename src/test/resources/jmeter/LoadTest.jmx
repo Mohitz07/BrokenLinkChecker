@@ -46,12 +46,13 @@
           <stringProp name="HTTPSampler.path">${targetURL}</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
 
-          <!-- ❌ REMOVE THESE -->
+          <!-- KEEP EMPTY -->
           <stringProp name="HTTPSampler.domain"></stringProp>
           <stringProp name="HTTPSampler.protocol"></stringProp>
 
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <!-- ✅ FINAL FIX -->
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
 
         </HTTPSamplerProxy>
 
