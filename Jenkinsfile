@@ -7,12 +7,6 @@
 
      stages {
 
-         stage('Checkout Code') {
-             steps {
-                 git 'https://github.com/Mohitz07/BrokenLinkChecker'
-             }
-         }
-
          stage('Build & Run Selenium Tests') {
              steps {
                  bat 'mvn clean test'
