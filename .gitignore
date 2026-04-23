@@ -36,3 +36,18 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+# JMeter
+*.jtl
+jmeter-report/
+target/jmeter-report/
+
+# Allure
+allure-results/
+allure-report/
+
+# Logs
+*.log
+
+# OS / temp
+Thumbs.db
