@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0">
+  <hashTree>
+
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="YCCE Load Test" enabled="true">
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+    </TestPlan>
+
+    <hashTree>
+
+      <!-- THREAD GROUP -->
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="User Traffic Simulation" enabled="true">
+        <intProp name="ThreadGroup.num_threads">10</intProp>
+        <intProp name="ThreadGroup.ramp_time">5</intProp>
+
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <intProp name="LoopController.loops">1</intProp>
+        </elementProp>
+      </ThreadGroup>
+
+      <hashTree>
+
+        <!-- CSV DATA -->
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Valid Links Source" enabled="true">
+          <stringProp name="filename">src/test/resources/testdata/valid_links_jmeter.csv</stringProp>
+          <stringProp name="variableNames">path</stringProp>
+          <stringProp name="delimiter">,</stringProp>
+          <boolProp name="ignoreFirstLine">true</boolProp>
+          <boolProp name="recycle">true</boolProp>
+          <boolProp name="stopThread">false</boolProp>
+        </CSVDataSet>
+
+        <hashTree/>
+
+        <!-- HTTP REQUEST -->
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Request to ${path}" enabled="true">
+
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+
+          <!-- ✅ FIXED CONFIG -->
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.domain">ycce.edu</stringProp>
+          <stringProp name="HTTPSampler.path">${path}</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+
+        </HTTPSamplerProxy>
+
+        <hashTree/>
+
+      </hashTree>
+
+    </hashTree>
+
+  </hashTree>
+</jmeterTestPlan>
