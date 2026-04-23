@@ -31,7 +31,10 @@ pipeline {
                     %JMETER_HOME%\\bin\\jmeter.bat -n ^
                     -t src\\test\\resources\\jmeter\\LoadTest.jmx ^
                     -l target\\results-${timestamp}.jtl ^
-                    -e -o target\\jmeter-report-${timestamp}
+                    -e -o target\\jmeter-report-${timestamp} ^
+                    -q %JMETER_HOME%\\bin\\jmeter.properties ^
+                    -Jjmeter.save.saveservice.print_field_names=true ^
+                    -Jjmeter.save.saveservice.timestamp_format=ms
                     """
 
                     // 🔍 Debug: Check files
