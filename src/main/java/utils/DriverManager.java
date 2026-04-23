@@ -43,7 +43,7 @@ public class DriverManager {
                     capabilities.setBrowserName(browser.toLowerCase());
 
                     driver.set(new RemoteWebDriver(
-                            new URL("http://172.21.0.70:4444"),
+                            new URL("http://172.21.0.88:4444"),
                             capabilities
                     ));
 

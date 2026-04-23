@@ -2,7 +2,7 @@
 <jmeterTestPlan version="1.2" properties="5.0">
   <hashTree>
 
-    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="YCCE Load Test" enabled="true">
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Universal Load Test" enabled="true">
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
@@ -24,9 +24,9 @@
       <hashTree>
 
         <!-- CSV DATA -->
-        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Valid Links Source" enabled="true">
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Links Source" enabled="true">
           <stringProp name="filename">src/test/resources/testdata/valid_links_jmeter.csv</stringProp>
-          <stringProp name="variableNames">path</stringProp>
+          <stringProp name="variableNames">targetURL</stringProp>
           <stringProp name="delimiter">,</stringProp>
           <boolProp name="ignoreFirstLine">true</boolProp>
           <boolProp name="recycle">true</boolProp>
@@ -36,17 +36,19 @@
         <hashTree/>
 
         <!-- HTTP REQUEST -->
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Request to ${path}" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Request to ${targetURL}" enabled="true">
 
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
 
-          <!-- ✅ FIXED CONFIG -->
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
-          <stringProp name="HTTPSampler.domain">ycce.edu</stringProp>
-          <stringProp name="HTTPSampler.path">${path}</stringProp>
+          <!-- ✅ FULL URL DIRECT -->
+          <stringProp name="HTTPSampler.path">${targetURL}</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
+
+          <!-- ❌ REMOVE THESE -->
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
 
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>

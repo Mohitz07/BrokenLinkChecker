@@ -10,23 +10,20 @@ public class CSVWriterUtil {
 
         try (FileWriter writer = new FileWriter(filePath)) {
 
-            // ✅ Header must match JMeter variable
-            writer.append("path\n");
+            // Header must match JMeter variable
+            writer.append("targetURL\n");
 
             for (String link : links) {
 
                 String cleanLink = link
-                        .split(" \\[")[0]
-                        .trim();
+                        .split(" \\[")[0]      // remove status part
+                        .trim()
+                        .replaceAll("^/+", "") // remove leading /
+                        .replaceAll("(?<!:)//+", "/"); // fix double slashes
 
-                // ✅ Remove domain if present
-                cleanLink = cleanLink
-                        .replace("https://ycce.edu", "")
-                        .replace("http://ycce.edu", "");
-
-                // ✅ Ensure it starts with /
-                if (!cleanLink.startsWith("/")) {
-                    cleanLink = "/" + cleanLink;
+                // ✅ Ensure full URL
+                if (!cleanLink.startsWith("http")) {
+                    cleanLink = "https://" + cleanLink;
                 }
 
                 writer.append(cleanLink).append("\n");
